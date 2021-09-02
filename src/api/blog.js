@@ -6,7 +6,13 @@ export default {
         return request({
             method: REQUEST_METHOD.GET,
             url: 'blog/published',
-            params
+            params: params
+        })
+    },
+    getBlogByBlogId(id) {
+        return request({
+            method: REQUEST_METHOD.GET,
+            url: `blog/${id}`
         })
     }
 }

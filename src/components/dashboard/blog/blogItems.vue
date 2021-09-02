@@ -1,24 +1,27 @@
 <template>
   <div>
     <el-card v-for="(blog, index) in blogs" :key="index" class="item">
-      <el-row>
-        <el-col :span="12">
+      <div @click="onclick(blog.id)">
+        <el-row>
+          <el-col :span="12">
           <span class="title">
             {{ blog.title }}
           </span>
-        </el-col>
-        <el-col :span="12">
-          <el-tag v-for="tag in blog.tags" type="info" :key="tag.id" effect="plain" class="tag">
-            {{ tag.tagName }}
-          </el-tag>
-        </el-col>
-      </el-row>
-      <el-divider/>
-      <el-row>
-        <div class="content">
-          {{ blog.content }}
-        </div>
-      </el-row>
+          </el-col>
+          <el-col :span="12">
+            <el-tag v-for="tag in blog.tags" type="info" :key="tag.id" effect="plain" class="tag">
+              {{ tag.tagName }}
+            </el-tag>
+          </el-col>
+        </el-row>
+        <el-divider/>
+        <el-row @click="onclick">
+          <div class="content">
+            {{ blog.content }}
+          </div>
+        </el-row>
+      </div>
+
       <el-divider/>
       <el-row :gutter="20">
         <el-col :span="8">
@@ -39,7 +42,7 @@
 </template>
 
 <script>
-import BlogApi from '../../api/blog'
+import BlogApi from '../../../api/blog'
 
 export default {
   name: 'blogItems',
@@ -49,21 +52,31 @@ export default {
         pageNo: 1,
         pageSize: 10
       },
-      blogs: []
+      blogs: [
+        {
+          id: 1,
+          title: 'springboot',
+          content: 'hello springboot',
+          tags: ['spring']
+        }]
     }
   },
   methods: {
     fetchData() {
       BlogApi.findPublishedBlog({
         pageNo: this.page.pageNo,
-        pageSize: this.pageSize
+        pageSize: this.page.pageSize
       }).then(res => {
         this.blogs = res.records
       })
+    },
+    onclick(id) {
+      console.log(id)
+      this.$router.push({name: 'view-blog', params: {id: id}})
     }
   },
   created() {
-    this.fetchData();
+    // this.fetchData();
   }
 }
 </script>
@@ -91,7 +104,7 @@ export default {
   margin: 10px 0 10px
 }
 
-.tag{
+.tag {
   float: right;
   margin-left: 20px;
 }

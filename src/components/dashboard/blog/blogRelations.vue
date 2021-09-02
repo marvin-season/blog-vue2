@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'blogRightRelations',
+  name: 'blogRelations',
   data() {
     return {}
   },
@@ -21,5 +21,8 @@ export default {
 </script>
 
 <style scoped>
-
+.el-card{
+  margin:10px 0 10px;
+  border-radius: 10px;
+}
 </style>

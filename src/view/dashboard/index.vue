@@ -9,8 +9,7 @@
 </template>
 
 <script>
-import Bar from '../../components/bar/index'
-import BlogApi from '../../api/blog'
+import Bar from '../../components/dashboard/bar/index'
 
 export default {
   name: 'index',
@@ -25,9 +24,6 @@ export default {
   },
   methods: {
     onClick() {
-      BlogApi.findPublishedBlog({name: '张三'}).then(res => {
-        console.log(res)
-      })
     }
   },
   created() {

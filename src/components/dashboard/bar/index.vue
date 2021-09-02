@@ -30,5 +30,7 @@ export default {
 </script>
 
 <style scoped>
-
+.el-card{
+  border-radius: 10px;
+}
 </style>

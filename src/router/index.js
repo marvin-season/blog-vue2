@@ -17,30 +17,35 @@ const vueRouter = new VueRouter({
             children: [
                 {
                     path: 'index',
-                    name: 'index',
-                    component: () => import('../components/index/')
+                    name: 'dashboard-index',
+                    component: () => import('../view/dashboard/blog/index')
                 },
                 {
                     path: 'message',
                     name: 'message',
-                    component: () => import('../components/message/index')
+                    component: () => import('../view/dashboard/message/index')
                 },
                 {
                     path: 'announcement',
                     name: 'announcement',
-                    component: () => import('../components/announcement/index')
+                    component: () => import('../view/dashboard/announcement/index')
+                },
+                {
+                    path: 'view-blog',
+                    name: 'view-blog',
+                    component: ()=> import('../view/dashboard/blog/ViewBlog')
                 }
             ]
         },
         {
-            path: '/admin',
-            name: 'admin',
-            component: () => import('../view/admin/index'),
+            path: '/dashboard-manager',
+            name: 'dashboard-manager',
+            component: () => import('../view/dashboard-manager/index'),
             children: [
                 {
                     path: 'index',
-                    name: 'index',
-                    component: () => import('../components/index/')
+                    name: 'dashboard-manager-index',
+                    component: () => import('../view/dashboard-manager/index/')
                 }
             ]
         }
