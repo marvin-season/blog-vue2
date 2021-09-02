@@ -31,7 +31,7 @@ const vueRouter = new VueRouter({
                     component: () => import('../view/dashboard/announcement/index')
                 },
                 {
-                    path: 'view-blog',
+                    path: 'view-blog/:id',
                     name: 'view-blog',
                     component: ()=> import('../view/dashboard/blog/ViewBlog')
                 }

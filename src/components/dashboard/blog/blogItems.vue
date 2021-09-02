@@ -65,7 +65,8 @@ export default {
     fetchData() {
       BlogApi.findPublishedBlog({
         pageNo: this.page.pageNo,
-        pageSize: this.page.pageSize
+        pageSize: this.page.pageSize,
+        authorId: 1
       }).then(res => {
         this.blogs = res.records
       })
@@ -76,7 +77,7 @@ export default {
     }
   },
   created() {
-    // this.fetchData();
+    this.fetchData();
   }
 }
 </script>
