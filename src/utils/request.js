@@ -1,7 +1,8 @@
 import axios from 'axios'
 import {Message} from 'element-ui'
 import store from '../store'
-// import {getToken} from './auth'
+import router from "../router";
+import {getToken} from './auth'
 
 // create an axios instance
 const service = axios.create({
@@ -10,20 +11,20 @@ const service = axios.create({
 })
 
 // request interceptor
-// service.interceptors.request.use(
-//     config => {
-//         // do something before request is sent
-//         if (store.getters.token) {
-//             config.headers['Authorization'] = getToken()
-//         }
-//         return config
-//     },
-//     error => {
-//         // do something with request error
-//         console.log(error) // for debug
-//         return Promise.reject(error)
-//     }
-// )
+service.interceptors.request.use(
+    config => {
+        // do something before request is sent
+        if (store.getters.token) {
+            config.headers['Authorization'] = getToken()
+        }
+        return config
+    },
+    error => {
+        // do something with request error
+        console.log(error) // for debug
+        return Promise.reject(error)
+    }
+)
 
 // response interceptor
 service.interceptors.response.use(
@@ -59,12 +60,13 @@ service.interceptors.response.use(
                 type: 'error',
                 duration: 3 * 1000
             })
+            console.table()
             console.warn(res.result)
             // 401: 认证失败
             if (res.code === 401) {
                 // 重新登录
-                store.dispatch('user/resetToken').then(() => {
-                    location.reload()
+                store.dispatch('resetToken').then(() => {
+                    router.push('/').then(()=>{})
                 })
             }
             return Promise.reject(new Error(res.message || '错误'))
