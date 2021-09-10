@@ -5,8 +5,8 @@ Vue.use(VueRouter)
 
 export const routes = [
     {
-      path: '/',
-      redirect: '/login'
+        path: '/',
+        redirect: '/login'
     },
     {
         path: '/login',
@@ -36,7 +36,7 @@ export const routes = [
             {
                 path: 'view-blog/:id',
                 name: 'view-blog',
-                component: ()=> import('../view/dashboard/blog/ViewBlog')
+                component: () => import('../view/dashboard/blog/ViewBlog')
             }
         ]
     },

@@ -3,13 +3,16 @@ import App from './App.vue'
 import mavonEditor from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 
-console.log(mavonEditor)
 Vue.use(mavonEditor)
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import router from './router/index'
 import store from './store/index'
+
+
+import './utils/permission'
+import './icons'
 
 Vue.use(ElementUI);
 
