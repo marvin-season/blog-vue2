@@ -4,7 +4,7 @@ import REQUEST_METHOD from '../utils/request-methods'
 export default {
     registry(data) {
         return request({
-            method: REQUEST_METHOD.GET,
+            method: REQUEST_METHOD.POST,
             url: '/user/registry',
             data
         })

@@ -9,7 +9,7 @@
         :before-upload="beforeUpload"
         :http-request="upload"
     >
-      <img v-if="getUser.avatar" :src="getUser.avatar" class="avatar">
+      <img v-if="getUser.avatar" :src="getUser.avatar" class="avatar" alt="">
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
     </el-upload>
   </div>
@@ -56,15 +56,10 @@ export default {
   display: block;
   overflow: hidden;
   border: 1px dashed #d9d9d9;
-  border-radius: 6px;
+  border-radius: 8px;
   box-sizing: border-box;
 
   .uploader-icon {
-    font-size: 60px;
-    width: 190px;
-    height: 230px;
-    line-height: 230px;
-    color: #8c939d;
     cursor: pointer;
   }
 

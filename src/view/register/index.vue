@@ -7,6 +7,15 @@
       <el-form-item label="密码">
         <el-input v-model="registerUser.password"/>
       </el-form-item>
+      <el-form-item label="手机号">
+        <el-input v-model="registerUser.phone"/>
+      </el-form-item>
+      <el-form-item label="qq">
+        <el-input v-model="registerUser.qq"/>
+      </el-form-item>
+      <el-form-item label="wx">
+        <el-input v-model="registerUser.wx"/>
+      </el-form-item>
       <el-row>
         <el-col :span="18">
           <el-form-item prop="captcha">
@@ -27,7 +36,8 @@
         </el-col>
       </el-row>
       <el-form-item>
-        <el-button @click="register">登录</el-button>
+        <el-button @click="register">注册</el-button>
+        <el-button type="primary" @click="$router.push({name: 'login'})">去登录</el-button>
       </el-form-item>
     </el-form>
 
@@ -37,6 +47,7 @@
 
 <script>
 import CaptchaApi from "../../api/captcha";
+import UserApi from "../../api/user";
 
 export default {
   name: 'index',
@@ -47,9 +58,28 @@ export default {
       captcha: {}
     }
   },
+  created() {
+    this.getCaptcha()
+  },
   methods: {
-    register() {
-
+    async register() {
+      // 验证码验证
+      console.log("验证码验证")
+      try {
+        await CaptchaApi.verify({
+          ...this.registerCaptcha
+        })
+      } catch (e) {
+        console.error("验证码验证失败")
+        return
+      }
+      console.log(this.registerUser)
+      try {
+        await UserApi.registry(this.registerUser)
+        await this.$router.push({name: 'login'})
+      } catch (e) {
+        this.$message.error('注册用户失败')
+      }
     },
     getCaptcha() {
       CaptchaApi.getCaptcha().then(res => {

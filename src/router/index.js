@@ -14,6 +14,11 @@ export const routes = [
         component: () => import('../view/login/index'),
     },
     {
+        path: '/register',
+        name: 'register',
+        component: () => import('../view/register/index'),
+    },
+    {
         path: '/dashboard',
         name: 'dashboard',
         component: () => import('../view/dashboard/index'),

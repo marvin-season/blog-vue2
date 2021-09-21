@@ -11,7 +11,7 @@ router.beforeEach((to, from, next) => {
 
     NProgress.start()
 
-    if (to.path === '/' || to.path === '/login') {
+    if (to.path === '/login' || to.path === '/register') {
         next()
     } else {
         const hasToken = getToken();

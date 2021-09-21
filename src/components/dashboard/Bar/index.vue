@@ -28,6 +28,7 @@
         @dblclick="fullscreen=true"
         :fullscreen="fullscreen"
         :visible.sync="userDialogVisible"
+        :custom-class="dialogClass"
         width="80%"
         right>
         <span slot="title">
@@ -50,6 +51,8 @@ export default {
   components: {UserInfo},
   data() {
     return {
+      dialogClass: {
+      },
       username: '',
       avatar: '',
       icon: 'el-icon-full-screen',

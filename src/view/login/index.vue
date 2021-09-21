@@ -28,6 +28,7 @@
       </el-row>
       <el-form-item>
         <el-button @click="login">登录</el-button>
+        <el-button type="primary" @click="$router.push({name: 'register'})">去注册</el-button>
       </el-form-item>
     </el-form>
   </div>
