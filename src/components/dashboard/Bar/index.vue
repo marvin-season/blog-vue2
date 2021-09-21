@@ -8,14 +8,12 @@
         <el-menu-item style="float: right">
           <el-dropdown>
             <span class="el-dropdown-link">
-              {{ $store.getters.user.username }}<i class="el-icon-arrow-down el-icon--right"></i>
+              {{ user.username }}
+              <el-avatar :src="user.avatar" style="margin-left: 10px"/>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
                 <el-button type="text" @click="userDialogVisible = true">个人中心</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button type="text" @click="$router.push({name: 'login'})">登录</el-button>
               </el-dropdown-item>
               <el-dropdown-item>
                 <el-button type="text" @click="logout">注销登录</el-button>
@@ -30,7 +28,7 @@
         @dblclick="fullscreen=true"
         :fullscreen="fullscreen"
         :visible.sync="userDialogVisible"
-        width="70%"
+        width="80%"
         right>
         <span slot="title">
           <el-button type="text" @click="fullscreen= !fullscreen">
@@ -38,9 +36,6 @@
           </el-button>
         </span>
       <user-info/>
-      <span slot="footer" class="dialog-footer">
-          <el-button type="text" @click="userDialogVisible = false">确 定</el-button>
-        </span>
     </el-dialog>
   </div>
 
@@ -48,27 +43,31 @@
 
 <script>
 import UserInfo from "../../user/UserInfo"
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'index',
   components: {UserInfo},
   data() {
     return {
-      user: {},
+      username: '',
+      avatar: '',
       icon: 'el-icon-full-screen',
       fullscreen: false,
       userDialogVisible: false,
       activeIndex: '1'
     }
   },
-  created() {
-
-  },
   methods: {
     logout() {
       this.$store.dispatch('logout')
       this.$router.push('/')
     }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'user'
+    })
   }
 }
 </script>

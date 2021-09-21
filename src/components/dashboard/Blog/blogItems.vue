@@ -43,7 +43,6 @@
 
 <script>
 import BlogApi from '../../../api/blog'
-import {mapState, mapGetters} from 'vuex'
 
 export default {
   name: 'blogItems',
@@ -63,12 +62,6 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      user: 'user'
-    }),
-    ...mapGetters({
-      userG: 'user'
-    })
   },
   methods: {
     fetchData() {
@@ -87,8 +80,6 @@ export default {
   },
   created() {
     this.fetchData();
-    console.log(this.user)
-    console.log(this.userG)
   }
 }
 </script>

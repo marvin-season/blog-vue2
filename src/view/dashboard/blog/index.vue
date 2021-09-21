@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import BlogItems from '../../../components/dashboard/blog/blogItems'
-import BlogRelations from "../../../components/dashboard/blog/blogRelations";
+import BlogItems from '../../../components/dashboard/Blog/blogItems'
+import BlogRelations from "../../../components/dashboard/Blog/blogRelations";
 
 export default {
   name: 'index',

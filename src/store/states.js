@@ -2,6 +2,6 @@ import {getDefaultState} from "../utils/auth";
 
 const state = {
     token: getDefaultState().token,
-    user: getDefaultState().user
+    user: {}
 }
 export default state

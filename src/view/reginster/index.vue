@@ -1,17 +1,17 @@
 <template>
   <div>
-    <el-form ref="formData" :model="loginUser" label-width="400px">
+    <el-form ref="formData" :model="registerUser" label-width="400px">
       <el-form-item label="用户名">
-        <el-input v-model="loginUser.username"/>
+        <el-input v-model="registerUser.username"/>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="loginUser.password"/>
+        <el-input v-model="registerUser.password"/>
       </el-form-item>
       <el-row>
         <el-col :span="18">
           <el-form-item prop="captcha">
             <el-input
-                v-model="loginCaptcha.code"
+                v-model="registerCaptcha.code"
                 clearable
                 placeholder="验证码"
                 auto-complete="on"
@@ -27,59 +27,34 @@
         </el-col>
       </el-row>
       <el-form-item>
-        <el-button @click="login">登录</el-button>
+        <el-button @click="register">登录</el-button>
       </el-form-item>
     </el-form>
+
   </div>
 
 </template>
 
 <script>
-import CaptchaApi from '../../api/captcha'
+import CaptchaApi from "../../api/captcha";
 
 export default {
   name: 'index',
   data() {
     return {
-      loginUser: {
-        username: '梅宇新',
-        password: '18871325942',
-      },
-      captcha: {},
-      loginCaptcha: {
-        id: '',
-        code: ''
-      }
+      registerUser: {},
+      registerCaptcha: {},
+      captcha: {}
     }
   },
-  created() {
-    this.getCaptcha()
-  },
   methods: {
-    async login() {
-      // 验证码验证
-      console.log("验证码验证")
-      try {
-        await CaptchaApi.verify({
-          ...this.loginCaptcha
-        })
-      } catch (e) {
-        console.error("验证码验证失败")
-        return
-      }
-
-      console.log("用户信息验证")
-      await this.$store.dispatch('login', {
-        ...this.loginUser,
-      })
-
-      await this.$router.push({name: 'announcement'})
+    register() {
 
     },
     getCaptcha() {
       CaptchaApi.getCaptcha().then(res => {
         this.captcha = res
-        this.loginCaptcha.id = this.captcha.id
+        this.registerCaptcha.id = this.captcha.id
       })
     }
   }

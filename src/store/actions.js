@@ -14,9 +14,6 @@ const actions = {
                 commit(TYPES.SET_TOKEN, token)
                 Auth.setToken(token)
 
-                // 存储用户基本信息
-                commit(TYPES.SET_USER, userSession)
-                Auth.setUser(userSession)
                 resolve()
             }).catch(resolve => {
                 reject(resolve)
@@ -34,7 +31,6 @@ const actions = {
         return new Promise((resolve, reject) => {
             try {
                 Auth.removeToken() // must remove  token  first
-                Auth.removeUser() // 擦除用户信息
 
                 resetRouter()
                 commit(TYPES.RESET_STATE)

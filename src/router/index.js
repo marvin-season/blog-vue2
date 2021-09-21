@@ -36,7 +36,7 @@ export const routes = [
             {
                 path: 'view-blog/:id',
                 name: 'view-blog',
-                component: () => import('../view/dashboard/blog/ViewBlog')
+                component: () => import('../components/dashboard/Blog/ViewBlog')
             }
         ]
     },

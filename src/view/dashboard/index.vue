@@ -9,7 +9,12 @@
 </template>
 
 <script>
-import Bar from '../../components/dashboard/bar/index'
+import Bar from '../../components/dashboard/Bar/index'
+import UserApi from '../../api/user'
+import {mapMutations} from 'vuex'
+
+import {SET_USER} from '../../store/types'
+
 
 export default {
   name: 'index',
@@ -23,10 +28,19 @@ export default {
     }
   },
   methods: {
-    onClick() {
-    }
+    getUserInfo() {
+      UserApi.getPrincipal().then(res => {
+        UserApi.getUserInfo(res.id).then(result => {
+          this.setUser(result)
+        })
+      })
+    },
+    ...mapMutations({
+      setUser: SET_USER
+    })
   },
   created() {
+    this.getUserInfo()
   }
 }
 </script>
