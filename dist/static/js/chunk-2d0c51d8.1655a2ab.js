@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0c51d8"],{"3e5e":function(e,n,t){"use strict";t.r(n);var c=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[e._v(" 留言板 ")])},u=[],a={name:"index",data:function(){return{}},methods:{}},d=a,r=t("2877"),i=Object(r["a"])(d,c,u,!1,null,"72e8dbc6",null);n["default"]=i.exports}}]);

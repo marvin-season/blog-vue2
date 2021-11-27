@@ -5,13 +5,13 @@ export default {
     getCaptcha() {
         return request({
             method: REQUEST_METHOD.GET,
-            url: '/captcha/captcha'
+            url: '/captcha/captcha/redis'
         })
     },
     verify(data) {
         return request({
             method: REQUEST_METHOD.POST,
-            url: '/captcha/verify',
+            url: '/captcha/verify/redis',
             data: data
         })
     }

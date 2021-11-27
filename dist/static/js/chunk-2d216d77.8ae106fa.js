@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d216d77"],{c3d5:function(n,e,t){"use strict";t.r(e);var a=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",[n._v(" 公告 ")])},c=[],u={name:"index",data:function(){return{}},methods:{}},d=u,r=t("2877"),i=Object(r["a"])(d,a,c,!1,null,"41ae5281",null);e["default"]=i.exports}}]);

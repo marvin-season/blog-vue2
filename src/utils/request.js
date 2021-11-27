@@ -6,7 +6,7 @@ import {getToken} from './auth'
 
 // create an axios instance
 const service = axios.create({
-    baseURL: process.env.VUE_APP_BASE_API,
+    baseURL: 'http://marvin.ink:12346/',
     timeout: 5000 // request timeout
 })
 

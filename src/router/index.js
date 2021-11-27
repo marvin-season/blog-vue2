@@ -21,41 +21,24 @@ export const routes = [
     {
         path: '/dashboard',
         name: 'dashboard',
-        component: () => import('../view/dashboard/index'),
+        component: () => import('../layout/Dashboard'),
         children: [
             {
-                path: 'index',
-                name: 'dashboard-index',
-                component: () => import('../view/dashboard/blog/index')
+                path: 'blog',
+                name: 'blog',
+                component: () => import('../view/dashboard/Blog')
             },
             {
-                path: 'message',
-                name: 'message',
-                component: () => import('../view/dashboard/message/index')
-            },
-            {
-                path: 'announcement',
-                name: 'announcement',
-                component: () => import('../view/dashboard/announcement/index')
-            },
-            {
-                path: 'view-blog/:id',
-                name: 'view-blog',
-                component: () => import('../components/dashboard/Blog/ViewBlog')
+                path: 'blog-show/:id',
+                name: 'blog-show',
+                component: () => import('../view/dashboard/BlogDetail')
             }
         ]
     },
     {
         path: '/dashboard-manager',
         name: 'dashboard-manager',
-        component: () => import('../view/dashboard-manager/index'),
-        children: [
-            {
-                path: 'index',
-                name: 'dashboard-manager-index',
-                component: () => import('../view/dashboard-manager/index/')
-            }
-        ]
+        component: () => import('../layout/DashboardManager')
     }
 ]
 

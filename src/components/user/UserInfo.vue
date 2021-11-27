@@ -46,7 +46,7 @@
 <script>
 import {mapGetters, mapMutations} from 'vuex'
 import UserApi from '../../api/user'
-import ImageUploader from '../../components/dashboard/ImageUploader/index'
+import ImageUploader from '../dashboard/ImageUploader'
 
 import {SET_USER} from "../../store/types";
 

@@ -3,7 +3,7 @@ import router from '../router'
 import {getToken} from "./auth";
 import {Message} from "element-ui";
 
-// 加载进度条
+// 浏览器上边的加载进度条
 import NProgress from 'nprogress' // progress Bar
 import 'nprogress/nprogress.css' // progress Bar style
 
