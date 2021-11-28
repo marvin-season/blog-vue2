@@ -61,9 +61,28 @@ export default {
         }]
     }
   },
+  props: {
+    options: {
+      type: Object,
+      default: () => {
+        return {
+          name: '1',
+          authorId: 1
+        };
+      }
+    }
+  },
   computed: {},
   methods: {
     fetchData() {
+      const params = {
+        pageNo: this.page.pageNo,
+        pageSize: this.page.pageSize,
+        ...this.options
+      }
+      console.log(params)
+
+      // BlogApi.findBlogByOptions()
       BlogApi.findPublishedBlog({
         pageNo: this.page.pageNo,
         pageSize: this.page.pageSize,
@@ -73,7 +92,7 @@ export default {
       })
     },
     onclick(id) {
-      this.$router.push({name: 'blog-show', params: {id}})
+      this.$router.push({name: 'blog-detail', params: {id}})
     }
   },
   created() {

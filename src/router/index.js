@@ -24,14 +24,29 @@ export const routes = [
         component: () => import('../layout/Dashboard'),
         children: [
             {
-                path: 'blog',
-                name: 'blog',
-                component: () => import('../view/dashboard/Blog')
+                path: 'blog-recommend',
+                name: 'blog-recommend',
+                component: () => import('../view/dashboard/BlogRecommend')
             },
             {
-                path: 'blog-show/:id',
-                name: 'blog-show',
+                path: 'blog-detail/:id',
+                name: 'blog-detail',
                 component: () => import('../view/dashboard/BlogDetail')
+            },
+            {
+                path: 'blog-collect',
+                name: 'blog-collect',
+                component: () => import('../view/dashboard/BlogCollect')
+            },
+            {
+                path: 'blog-me',
+                name: 'blog-me',
+                component: () => import('../view/dashboard/BlogMe')
+            },
+            {
+                path: 'blog-draft',
+                name: 'blog-draft',
+                component: () => import('../view/dashboard/BlogDraft')
             }
         ]
     },
@@ -39,6 +54,11 @@ export const routes = [
         path: '/dashboard-manager',
         name: 'dashboard-manager',
         component: () => import('../layout/DashboardManager')
+    },
+    {
+        path: '/blog-edit',
+        name: 'blog-edit',
+        component: () => import('../view/dashboard/BlogEdit')
     }
 ]
 

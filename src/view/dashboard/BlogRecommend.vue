@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="20" type="flex" justify="space-between">
       <el-col :span="18">
-        <blog-list/>
+        <blog-list :query-condition="queryCondition"/>
       </el-col>
       <el-col :span="6">
         <div>推荐列表</div>
@@ -15,10 +15,14 @@
 import BlogList from '../../components/dashboard/blog/BlogList'
 
 export default {
-  name: 'Blog',
+  name: 'BlogRecommend',
   components: {BlogList},
   data() {
-    return {}
+    return {
+      queryCondition: {
+
+      }
+    }
   },
   methods: {}
 }

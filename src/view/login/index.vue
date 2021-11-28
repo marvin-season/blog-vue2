@@ -74,7 +74,7 @@ export default {
         ...this.loginUser,
       })
 
-      await this.$router.push({name: 'blog'})
+      await this.$router.push({name: 'blog-recommend'})
 
     },
     getCaptcha() {

@@ -14,5 +14,13 @@ export default {
             method: REQUEST_METHOD.GET,
             url: `blog/${id}`
         })
+    },
+    // 根据条件筛选博客
+    findBlogByOptions(params) {
+        return request({
+            method: REQUEST_METHOD.GET,
+            url: 'blogs',
+            params
+        })
     }
 }

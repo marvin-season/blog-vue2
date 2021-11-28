@@ -17,16 +17,16 @@
 import MavonBoard from "@/components/dashboard/MavonBoard";
 
 export default {
+  // 博客展示编辑组件
   name: 'BlogDetail',
   components: {MavonBoard},
   data() {
     return {
-      blogId: ''
+      blogId: -1
     }
   },
   created() {
     this.blogId = this.$route.params.id
-    console.log(typeof this.blogId)
   }
 }
 </script>

@@ -41,6 +41,7 @@ export default {
     async upload(params) {
       console.log('原图属性：', params.file)
       const form = new FormData()
+      // 对应后台的参数名 : multipartFile
       form.append('multipartFile', params.file)
 
       const image = await ImageUploadApi.uploadImage(form);
@@ -55,9 +56,7 @@ export default {
 .uploader {
   display: block;
   overflow: hidden;
-  border: 1px dashed #d9d9d9;
   border-radius: 8px;
-  box-sizing: border-box;
 
   .uploader-icon {
     cursor: pointer;
@@ -70,5 +69,11 @@ export default {
   .el-upload .el-upload--text {
     display: block;
   }
+
+  .avatar{
+    height: 100%;
+    width: 100%;
+  }
 }
+
 </style>
