@@ -2,11 +2,17 @@ import request from '../utils/request'
 import REQUEST_METHOD from '../utils/request-methods'
 
 export default {
-    findPublishedBlog(params) {
+    deleteBlogById(id){
+      return request({
+          method: REQUEST_METHOD.DELETE,
+          url: `/blog/${id}`
+      })
+    },
+    saveOrUpdate(data){
         return request({
-            method: REQUEST_METHOD.GET,
-            url: 'blog/published',
-            params: params
+            method: REQUEST_METHOD.POST,
+            url: '/blog/saveOrUpdate',
+            data
         })
     },
     getBlogByBlogId(id) {
@@ -19,7 +25,7 @@ export default {
     findBlogByOptions(params) {
         return request({
             method: REQUEST_METHOD.GET,
-            url: 'blogs',
+            url: '/blog/findBlogByOptions',
             params
         })
     }

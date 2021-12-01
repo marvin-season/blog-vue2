@@ -22,9 +22,8 @@
             </el-dropdown-menu>
           </el-dropdown>
         </el-menu-item>
-        <el-menu-item style="float: right">
-          <el-button type="text" icon="el-icon-edit-outline"
-                     @click="$router.push({path: '/blog-edit', params: {id: -1}})">写文章
+        <el-menu-item style="float: right" index="5" route="/dashboard/blog-edit">
+          <el-button type="text" icon="el-icon-edit-outline">写文章
           </el-button>
         </el-menu-item>
       </el-menu>
@@ -61,7 +60,7 @@ export default {
       username: '',
       avatar: '',
       icon: 'el-icon-full-screen',
-      fullscreen: false,
+      fullscreen: true,
       userDialogVisible: false,
       activeIndex: '1'
     }

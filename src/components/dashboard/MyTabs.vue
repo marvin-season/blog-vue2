@@ -9,8 +9,13 @@
         <DataCard :me="1"/>
       </el-tab-pane>
       <el-tab-pane lazy label="我的关注" name="我的关注">
-        <!--        没有携带me,  DataCard页面是我的关注-->
-        <UserFriend/>
+        <!--        没有携带me,  DataCard页面是我的关注/粉丝-->
+        <!--        who:表示告诉子组件拉取love关注列表-->
+        <UserFriend who="love"/>
+      </el-tab-pane>
+      <el-tab-pane lazy label="我的粉丝" name="我的粉丝">
+        <!--        who:表示告诉子组件拉取love粉丝列表-->
+        <UserFriend who="fans"/>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -47,6 +52,6 @@ export default {
 }
 
 .el-tab-pane {
-  padding-left: 100px;
+  padding-left: 20px;
 }
 </style>

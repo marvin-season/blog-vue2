@@ -1,13 +1,12 @@
 <template>
   <div class="container">
-    <el-row>
+    <el-row :gutter="40">
       <el-col :span="8">
-        <UserFriendList class="list" @select="handleSelect"/>
+        <UserFriendList :who="who" class="list" @select="handleSelect"/>
       </el-col>
       <el-col :span="16">
-        <DataCard :user-id="currentSelectedId"/>
+        <DataCard :friend="currentFriend"/>
       </el-col>
-
     </el-row>
   </div>
 </template>
@@ -22,12 +21,19 @@ export default {
   components: {DataCard, UserFriendList},
   data() {
     return {
-      currentSelectedId: 18
+      currentFriend: {},
+    }
+  },
+  props: {
+    // 定义一个flag， 区分查找 粉丝或者关注
+    who: {
+      type: String,
+      default: ''
     }
   },
   methods: {
-    handleSelect(id) {
-      this.currentSelectedId = id
+    handleSelect(friend) {
+      this.currentFriend = friend
     }
   }
 }

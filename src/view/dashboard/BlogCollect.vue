@@ -15,8 +15,7 @@ export default {
       // 博客查询条件
       options: {
         authorId: 1,
-        userId: 1,
-        collected: 1
+        collect: true
       }
     }
   },

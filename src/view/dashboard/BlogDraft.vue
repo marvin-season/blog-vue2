@@ -15,7 +15,7 @@ export default {
       // 博客查询条件
       options: {
         authorId: 1,
-        published: false,
+        draft: true,
       }
     }
   },

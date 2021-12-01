@@ -43,6 +43,18 @@ export default {
             url: "/user/avatar",
             data
         })
+    },
+    getFans(id) {
+        return request({
+            method: REQUEST_METHOD.GET,
+            url: `/user/fans/${id}`
+        })
+    },
+    getLove(id) {
+        return request({
+            method: REQUEST_METHOD.GET,
+            url: `/user/love/${id}`
+        })
     }
 }
 

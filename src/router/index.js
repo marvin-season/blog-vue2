@@ -47,6 +47,11 @@ export const routes = [
                 path: 'blog-draft',
                 name: 'blog-draft',
                 component: () => import('../view/dashboard/BlogDraft')
+            },
+            {
+                path: 'blog-edit',
+                name: 'blog-edit',
+                component: () => import('../view/dashboard/BlogEdit')
             }
         ]
     },
@@ -54,11 +59,6 @@ export const routes = [
         path: '/dashboard-manager',
         name: 'dashboard-manager',
         component: () => import('../layout/DashboardManager')
-    },
-    {
-        path: '/blog-edit',
-        name: 'blog-edit',
-        component: () => import('../view/dashboard/BlogEdit')
     }
 ]
 

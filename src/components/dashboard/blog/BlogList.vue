@@ -2,7 +2,7 @@
   <div>
     <el-card v-for="(blog, index) in blogs" :key="index" class="item">
       <div @click="onclick(blog.id)">
-        <el-row>
+        <el-row class="item-header">
           <el-col :span="12">
           <span class="title">
             {{ blog.title }}
@@ -15,14 +15,15 @@
           </el-col>
         </el-row>
         <el-divider/>
-        <el-row @click="onclick">
-          <div class="content">
-            {{ blog.content }}
+        <el-row @click="onclick" class="item-body">
+          <div class="summary">
+            {{ blog.summary }}
           </div>
         </el-row>
       </div>
 
       <el-divider/>
+      <!--      底角-->
       <el-row :gutter="20">
         <el-col :span="8">
           <i class="el-icon-time">{{ blog.createTime }}</i>
@@ -56,6 +57,7 @@ export default {
         {
           id: 1,
           title: 'springboot',
+          summary: 'spring boot 是一款 开箱即用的java主流框架', // 博客的概括
           content: 'hello springboot',
           tags: ['spring']
         }]
@@ -66,8 +68,10 @@ export default {
       type: Object,
       default: () => {
         return {
-          name: '1',
-          authorId: 1
+          authorId: 1,
+          collect: false,
+          recommend: true,
+          draft: false
         };
       }
     }
@@ -82,12 +86,7 @@ export default {
       }
       console.log(params)
 
-      // BlogApi.findBlogByOptions()
-      BlogApi.findPublishedBlog({
-        pageNo: this.page.pageNo,
-        pageSize: this.page.pageSize,
-        authorId: 1
-      }).then(res => {
+      BlogApi.findBlogByOptions(params).then(res => {
         this.blogs = res.records
       })
     },
@@ -103,7 +102,18 @@ export default {
 
 <style scoped>
 .item {
+  background-color: #fcf5e1;
   margin-bottom: 20px;
+  height: 200px;
+  border-radius: 15px;
+}
+
+.item .item-header {
+  height: 10px;
+}
+
+.item .item-body {
+  height: 10px;
 }
 
 .title {
@@ -112,11 +122,11 @@ export default {
   font-size: 16px;
 }
 
-.content {
+.summary {
   color: #525050;
   font-size: 13px;
   width: 100%;
-  height: 36px;
+  height: 30px;
   overflow: hidden;
 }
 

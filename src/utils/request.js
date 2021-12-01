@@ -6,7 +6,8 @@ import {getToken} from './auth'
 
 // create an axios instance
 const service = axios.create({
-    baseURL: 'http://marvin.ink:12346/',
+    // baseURL: 'http://marvin.ink:12346/',
+    baseURL: 'http://localhost:20211/blog',
     timeout: 5000 // request timeout
 })
 
@@ -66,7 +67,8 @@ service.interceptors.response.use(
             if (res.code === 401) {
                 // 重新登录
                 store.dispatch('resetToken').then(() => {
-                    router.push('/').then(()=>{})
+                    router.push('/').then(() => {
+                    })
                 })
             }
             return Promise.reject(new Error(res.message || '错误'))
