@@ -6,7 +6,7 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-button type="text" icon="el-icon-chat-dot-round" @click="chatting = true">联系ta</el-button>
+      <el-button type="text" icon="el-icon-chat-dot-round" @click="chatting = !chatting">联系ta</el-button>
 
       <el-descriptions :column="2">
         <el-descriptions-item label="用户名">{{ me ? getUser.username : friend.username || '' }}</el-descriptions-item>
@@ -20,14 +20,14 @@
     </el-row>
 
     <!--    聊天室-->
-    <ChatRoom v-if="chatting" :user-id="friend.id"/>
+    <ChatRoom v-if="chatting" :username="friend.username" :avatar="friend.avatar"/>
   </div>
 </template>
 
 <script>
 import ImageUploader from "./ImageUploader";
 import UserApi from "../../api/user";
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 import ChatRoom from "./ChatRoom";
 
 export default {
@@ -45,6 +45,7 @@ export default {
       type: Number,
       default: 0
     },
+    // 当前点击的好友
     friend: {
       type: Object,
       default: () => {
@@ -64,7 +65,13 @@ export default {
       getUser: 'user'
     })
   },
+  created() {
+    this.chatting = false
+  },
   methods: {
+    ...mapMutations({
+      setUser: 'SET_USER'
+    }),
     upload(imageUrl) {
       console.log(imageUrl)
       let currentUser = this.getUser;

@@ -1,7 +1,7 @@
-import {getDefaultState} from "../utils/auth";
+import {getDefaultState} from "../utils/localStore";
 
 const state = {
     token: getDefaultState().token,
-    user: {}
+    user: JSON.parse(getDefaultState().user) || {}
 }
 export default state

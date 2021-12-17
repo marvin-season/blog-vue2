@@ -1,21 +1,23 @@
 <template>
   <div>
-    <el-container>
-      <el-aside>
-      </el-aside>
-      <el-main>
-        <router-view/>
-      </el-main>
-    </el-container>
+    <Header/>
+    <el-divider/>
+    <div class="body">
+      <Aside></Aside>
+      <router-view/>
+    </div>
   </div>
 
 </template>
 
 <script>
 
+import Header from "../view/dashboard-manager/Header";
+import Aside from "../view/dashboard-manager/Aside";
+
 export default {
   name: 'index',
-  components: {},
+  components: {Aside, Header},
   data() {
     return {}
   },
@@ -24,13 +26,11 @@ export default {
 </script>
 
 <style scoped>
-
-.el-aside{
-  background: rgb(84, 92, 100);
+.el-divider {
+  margin: 0;
 }
-
-.el-menu{
-  border-right: unset;
+.body{
+  display: flex;
+  width: 100%;
 }
-
 </style>

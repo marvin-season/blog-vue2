@@ -11,7 +11,7 @@
 <script>
 import Bar from '../components/dashboard/Bar'
 import UserApi from '../api/user'
-import {mapMutations} from 'vuex'
+import {mapGetters, mapMutations} from 'vuex'
 
 import {SET_USER} from '../store/types'
 
@@ -23,9 +23,7 @@ export default {
     return {}
   },
   computed: {
-    key() {
-      return this.$route.path
-    }
+    ...mapGetters(['user', 'token'])
   },
   methods: {
     getUserInfo() {
@@ -40,7 +38,7 @@ export default {
     })
   },
   created() {
-    this.getUserInfo()
+    // this.getUserInfo()
   }
 }
 </script>

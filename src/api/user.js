@@ -55,6 +55,25 @@ export default {
             method: REQUEST_METHOD.GET,
             url: `/user/love/${id}`
         })
+    },
+    addLove(whoId, fansId) {
+        return request({
+            method: REQUEST_METHOD.POST,
+            url: `/user/addLove/${whoId}/${fansId}`,
+        })
+    },
+    deleteLove(whoId, fansId) {
+        return request({
+            method: REQUEST_METHOD.POST,
+            url: `/user/deleteLove/${whoId}/${fansId}`,
+        })
+    },
+    findAll(params) {
+        return request({
+            method: REQUEST_METHOD.GET,
+            url: '/user/findAll',
+            params
+        })
     }
 }
 

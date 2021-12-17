@@ -1,20 +1,21 @@
 <template>
-  <div>
-    <el-form ref="formData" :model="registerUser" label-width="400px">
-      <el-form-item label="用户名">
-        <el-input v-model="registerUser.username"/>
+  <div class="register-container">
+    <div class="title">注册中心</div>
+    <el-form ref="formData" :model="registerUser">
+      <el-form-item>
+        <el-input clearable v-model="registerUser.username" placeholder="用户名"/>
       </el-form-item>
-      <el-form-item label="密码">
-        <el-input v-model="registerUser.password"/>
+      <el-form-item>
+        <el-input clearable v-model="registerUser.password" placeholder="密码"/>
       </el-form-item>
-      <el-form-item label="手机号">
-        <el-input v-model="registerUser.phone"/>
+      <el-form-item>
+        <el-input show-word-limit clearable v-model="registerUser.phone" placeholder="电话号" maxLength="11"></el-input>
       </el-form-item>
-      <el-form-item label="qq">
-        <el-input v-model="registerUser.qq"/>
+      <el-form-item>
+        <el-input clearable v-model="registerUser.qq" type="text" placeholder="QQ号" maxLength="10" show-word-limit/>
       </el-form-item>
-      <el-form-item label="wx">
-        <el-input v-model="registerUser.wx"/>
+      <el-form-item>
+        <el-input clearable v-model="registerUser.wx" placeholder="微信号"/>
       </el-form-item>
       <el-row>
         <el-col :span="18">
@@ -29,15 +30,14 @@
             />
           </el-form-item>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4" :offset="2">
           <div class="captcha-wrapper" title="刷新验证码" @click="getCaptcha">
             <el-image v-if="captcha.image" class="captcha" :src="captcha.image"/>
           </div>
         </el-col>
       </el-row>
       <el-form-item>
-        <el-button @click="register">注册</el-button>
-        <el-button type="primary" @click="$router.push({name: 'login'})">去登录</el-button>
+        <el-button type="success" @click="register">注册</el-button>
       </el-form-item>
     </el-form>
 
@@ -46,11 +46,11 @@
 </template>
 
 <script>
-import CaptchaApi from "../../api/captcha";
-import UserApi from "../../api/user";
+import CaptchaApi from "../api/captcha";
+import UserApi from "../api/user";
 
 export default {
-  name: 'index',
+  name: 'Register',
   data() {
     return {
       registerUser: {},
@@ -76,7 +76,7 @@ export default {
       console.log(this.registerUser)
       try {
         await UserApi.registry(this.registerUser)
-        await this.$router.push({name: 'login'})
+        await this.$router.push('/')
       } catch (e) {
         this.$message.error('注册用户失败')
       }
@@ -92,5 +92,17 @@ export default {
 </script>
 
 <style scoped>
+.register-container {
+  width: 100%;
+  height: 100%;
+}
 
+.title {
+  font-size: 28px;
+  color: #1482f0;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 </style>

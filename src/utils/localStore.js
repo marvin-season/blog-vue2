@@ -1,19 +1,33 @@
 const TokenKey = 'TOKEN'
+const UserKey = 'USER'
 
 export function getToken() {
     return localStorage.getItem(TokenKey)
+}
+
+export function getUser() {
+    return localStorage.getItem(UserKey)
 }
 
 export function setToken(token) {
     localStorage.setItem(TokenKey, token)
 }
 
+export function setUser(user) {
+    localStorage.setItem(UserKey, user)
+}
+
 export function removeToken() {
     localStorage.removeItem(TokenKey)
 }
 
+export function removeUser() {
+    localStorage.removeItem(UserKey)
+}
+
 export function getDefaultState() {
     return {
-        token: getToken()
+        token: getToken(),
+        user: getUser()
     }
 }

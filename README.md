@@ -1,24 +1,30 @@
-# blog-user
+## css添加动画
 
-## Project setup
-```
-npm install
-```
+```html
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+<transition appear>
+    <Login class="login" v-show="isLogin"/>
+</transition>
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+```css
+/*  进的过程*/
+.v-enter-active {
+    animation: blog 0.5s linear;
+}
 
-### Lints and fixes files
-```
-npm run lint
-```
+/*离开的过程*/
+.v-leave-active {
+    animation: blog 0.5s linear reverse;
+}
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+/*从左边出现， 然后停滞*/
+@keyframes blog {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0px);
+    }
+}
+```

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card v-for="(blog, index) in blogs" :key="index" class="item">
-      <div @click="onclick(blog.id)">
+      <div @click="onclick(blog.id, blog.authorId)">
         <el-row class="item-header">
           <el-col :span="12">
           <span class="title">
@@ -35,7 +35,7 @@
           <i class="el-icon-star-on">{{ blog.collectCount }}</i>
         </el-col>
         <el-col :span="4">
-          <i class="el-icon-user-solid">{{ blog.authorId }}</i>
+          <i class="el-icon-user-solid">{{ blog.username }}</i>
         </el-col>
       </el-row>
     </el-card>
@@ -44,6 +44,7 @@
 
 <script>
 import BlogApi from '../../../api/blog'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'BlogList',
@@ -53,14 +54,7 @@ export default {
         pageNo: 1,
         pageSize: 10
       },
-      blogs: [
-        {
-          id: 1,
-          title: 'springboot',
-          summary: 'spring boot 是一款 开箱即用的java主流框架', // 博客的概括
-          content: 'hello springboot',
-          tags: ['spring']
-        }]
+      blogs: []
     }
   },
   props: {
@@ -68,30 +62,41 @@ export default {
       type: Object,
       default: () => {
         return {
-          authorId: 1,
-          collect: false,
-          recommend: true,
-          draft: false
+          hasAuthorId: false,
+          isCollect: false,
+          isRecommend: false,
+          isDraft: false
         };
       }
     }
   },
-  computed: {},
+  filters: {},
+  computed: {
+    ...mapGetters(['user'])
+  },
   methods: {
     fetchData() {
+      this.options.hasAuthorId && this.$set(this.options, 'authorId', this.user.id)
+
       const params = {
         pageNo: this.page.pageNo,
         pageSize: this.page.pageSize,
-        ...this.options
+        authorId: this.options.authorId,
+        collect: this.options.isCollect,
+        recommend: this.options.isRecommend,
+        draft: this.options.isDraft
       }
-      console.log(params)
 
       BlogApi.findBlogByOptions(params).then(res => {
         this.blogs = res.records
       })
+
     },
-    onclick(id) {
-      this.$router.push({name: 'blog-detail', params: {id}})
+    onclick(id, authorId) {
+      this.$router.push({
+        name: 'blog-detail',
+        params: {authorId, id, edit: this.options.isDraft},
+      })
     }
   },
   created() {

@@ -14,11 +14,15 @@ export default {
     return {
       // 博客查询条件
       options: {
-        authorId: 1,
-        draft: true,
+        hasAuthorId: true,
+        isDraft: true,
       }
     }
   },
+  computed: {
+  },
+  created() {
+  }
 }
 </script>
 

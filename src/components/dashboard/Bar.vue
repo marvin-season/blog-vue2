@@ -22,7 +22,7 @@
             </el-dropdown-menu>
           </el-dropdown>
         </el-menu-item>
-        <el-menu-item style="float: right" index="5" route="/dashboard/blog-edit">
+        <el-menu-item style="float: right" index="5" route="/dashboard/blog-create">
           <el-button type="text" icon="el-icon-edit-outline">写文章
           </el-button>
         </el-menu-item>
@@ -75,6 +75,8 @@ export default {
     ...mapGetters({
       user: 'user'
     })
+  },
+  created() {
   }
 }
 </script>

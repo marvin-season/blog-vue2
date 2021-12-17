@@ -7,6 +7,7 @@
 <script>
 import BlogList from "../../components/dashboard/blog/BlogList";
 
+
 export default {
   name: "BlogMe",
   components: {BlogList},
@@ -14,10 +15,12 @@ export default {
     return {
       // 博客查询条件
       options: {
-        authorId: 1
+        hasAuthorId: true
       }
     }
   },
+  computed: {
+  }
 }
 </script>
 

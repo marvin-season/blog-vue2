@@ -1,14 +1,15 @@
 <template>
   <div>
+    <MavonBoard/>
   </div>
 </template>
 
 <script>
-// import MavonBoard from "../../components/dashboard/MavonBoard";
+import MavonBoard from "../../components/dashboard/MavonBoard";
 // TODO 博客添加页面
 export default {
   name: "BlogEdit",
-  components: {},
+  components: {MavonBoard},
   data() {
     return {
       id: 0,

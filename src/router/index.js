@@ -6,17 +6,12 @@ Vue.use(VueRouter)
 export const routes = [
     {
         path: '/',
-        redirect: '/login'
+        redirect: '/index'
     },
     {
-        path: '/login',
-        name: 'login',
-        component: () => import('../view/login/index'),
-    },
-    {
-        path: '/register',
-        name: 'register',
-        component: () => import('../view/register/index'),
+        path: '/index',
+        name: 'index',
+        component: () => import('../view/index'),
     },
     {
         path: '/dashboard',
@@ -24,12 +19,16 @@ export const routes = [
         component: () => import('../layout/Dashboard'),
         children: [
             {
+                path: '/',
+                redirect: 'blog-recommend'
+            },
+            {
                 path: 'blog-recommend',
                 name: 'blog-recommend',
                 component: () => import('../view/dashboard/BlogRecommend')
             },
             {
-                path: 'blog-detail/:id',
+                path: 'blog-detail/:id/:authorId',
                 name: 'blog-detail',
                 component: () => import('../view/dashboard/BlogDetail')
             },
@@ -49,16 +48,44 @@ export const routes = [
                 component: () => import('../view/dashboard/BlogDraft')
             },
             {
-                path: 'blog-edit',
-                name: 'blog-edit',
-                component: () => import('../view/dashboard/BlogEdit')
+                path: 'blog-create',
+                name: 'blog-create',
+                component: () => import('../view/dashboard/BlogCreate')
             }
         ]
     },
     {
         path: '/dashboard-manager',
         name: 'dashboard-manager',
-        component: () => import('../layout/DashboardManager')
+        component: () => import('../layout/DashboardManager'),
+        children: [
+            {
+                path: '/',
+                redirect: 'home'
+            },
+            {
+                path: 'home',
+                name: 'home',
+                component: () => import('../view/dashboard-manager/Home')
+            },
+            {
+                path: 'user',
+                name: 'user',
+                component: () => import('../view/dashboard-manager/User')
+            },
+        ]
+    },
+    {
+        path: '*',
+        redirect: '/error'
+    },
+    {
+        path: '/error',
+        component: () => import('../view/404'),
+        name: 'error',
+        meta: {
+            title: '页面没找到'
+        }
     }
 ]
 

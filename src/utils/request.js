@@ -2,17 +2,17 @@ import axios from 'axios'
 import {Message} from 'element-ui'
 import store from '../store'
 import router from "../router";
-import {getToken} from './auth'
+import {getToken} from './localStore'
 
 // create an axios instance
-const service = axios.create({
+const request = axios.create({
     // baseURL: 'http://marvin.ink:12346/',
-    baseURL: 'http://localhost:20211/blog',
+    baseURL: 'http://marvin.ink:20211/blog',
     timeout: 5000 // request timeout
 })
 
 // request interceptor
-service.interceptors.request.use(
+request.interceptors.request.use(
     config => {
         // do something before request is sent
         if (store.getters.token) {
@@ -28,7 +28,7 @@ service.interceptors.request.use(
 )
 
 // response interceptor
-service.interceptors.response.use(
+request.interceptors.response.use(
     /**
      * If you want to get http information such as headers or status
      * Please return  response => response
@@ -87,4 +87,4 @@ service.interceptors.response.use(
     }
 )
 
-export default service
+export default request

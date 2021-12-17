@@ -1,14 +1,16 @@
 <template>
-  <div class="friend-container">
-    <label class="title">好友列表</label>
-    <div class="item-container">
-      <div v-for="item in friends" :key="item.id" @click="handleClick(item)">
-        <div class="item" v-bind:class="{selected: isActive(item.id)}">
-          <el-avatar :src="item.avatar"></el-avatar>
-          <span class="item-text">{{ item.username }}</span>
-        </div>
+  <div>
+
+    <el-card>
+      <div slot="header">
+        <span>好友列表</span>
       </div>
-    </div>
+      <div v-for="item in friends" :key="item.id" @click="handleClick(item)" class="item">
+        <el-avatar :src="item.avatar"></el-avatar>
+        <span class="username">{{ item.username }}</span>
+        <i class="el-icon-chat-dot-round msg" v-show="item.id === friend.id"></i>
+      </div>
+    </el-card>
   </div>
 </template>
 
@@ -21,6 +23,7 @@ export default {
   name: "UserFriendList",
   data() {
     return {
+      friend: {}, // 当前选中
       friends: [],
       peerToFriends: [],
       lastId: -1,
@@ -54,82 +57,40 @@ export default {
       promise.then(data => {
         if (data) {
           this.friends = data
-          // 额外的工作
-          this.peerToFriends = this.friends.map(v => {
-            return {id: v.id, flag: false}
-          })
 
           // 默认点击了第一个好友
-          this.lastId = this.peerToFriends[0].id
           this.handleClick(data[0])
           return
         }
-        this.$message.warning('no')
+        this.$message.warning('还没有粉丝或关注哦')
 
       })
     },
     handleClick(friend) {
+      this.friend = friend
       // 向父组件抛出点击当前数据事件
       this.$emit('select', friend)
-
-      // 设置点击效果
-      let lastClick = this.peerToFriends.find(v => v.id === this.lastId);
-
-      // lastClick.flag = false 同下面这条语句
-      this.$set(lastClick, 'flag', false);
-      // 当前点击的好友
-      this.peerToFriends.find(v => v.id === friend.id).flag = true
-      this.lastId = friend.id
-    },
-    isActive(id) {
-      // return false
-      return this.peerToFriends.find(value => value.id === id).flag
     }
   }
 }
 </script>
 
 <style scoped>
-.friend-container {
-  border-radius: 6px;
-  border: 1px solid forestgreen;
-  background: #f8f6f4;
-  padding: 10px 10px;
-}
-
-.title {
-  display: inline-block;
-  font-size: 20px;
-  color: #222222;
-  font-family: "Andale Mono", sans-serif;
-  margin: 10px 0 10px;
-}
-
-.item-container {
-  overflow: scroll;
-  padding: 20px 10px;
-  height: 200px;
-
-}
-
 .item {
-  display: flex;
-  background-color: #d1d1d1;
-  border-radius: 4px;
-  padding: 3px 5px;
-  margin-top: 20px;
+  margin: 5px 10px;
+  height: 50px;
+  line-height: 50px;
 }
 
-.item:hover {
+.item:hover{
   cursor: pointer;
 }
 
-.selected {
-  border: 1px solid gold;
-}
-
-.item-text{
-  margin-top: 10px;
+.username, .msg{
+  display: inline-block;
+  height: 50px;
+  line-height: 20px;
   margin-left: 20px;
+  margin-top: -10px;
 }
 </style>
